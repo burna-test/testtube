@@ -70,7 +70,7 @@ class Environment {
             roughness: 0.8,
             metalness: 0.1,
             side: THREE.FrontSide,
-            emissive: 0x111111, // Add slight emissive to be visible at night
+            emissive: 0x112211, // Add slight emissive to be visible at night
             emissiveIntensity: 0.1
         });
         
@@ -154,7 +154,7 @@ class Environment {
             map: runwayTexture,
             roughness: 0.7,
             metalness: 0.1,
-            emissive: 0x222222, // Add emissive to be visible at night
+            emissive: 0x111111, // Add emissive to be visible at night
             emissiveIntensity: 0.2
         });
         
@@ -277,7 +277,7 @@ class Environment {
             color: 0x8B4513,
             roughness: 0.9,
             metalness: 0.1,
-            emissive: 0x110800, // Slight emissive for night visibility
+            emissive: 0x221100, // Slight emissive for night visibility
             emissiveIntensity: 0.1
         });
         const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
@@ -292,7 +292,7 @@ class Environment {
             color: 0x2E8B57,
             roughness: 0.8,
             metalness: 0.1,
-            emissive: 0x0a1a0a, // Slight emissive for night visibility
+            emissive: 0x112211, // Slight emissive for night visibility
             emissiveIntensity: 0.1
         });
         const foliage = new THREE.Mesh(foliageGeometry, foliageMaterial);

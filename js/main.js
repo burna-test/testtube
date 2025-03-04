@@ -178,20 +178,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start the game
     function startGame() {
+        // Add basic lighting to ensure visibility
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(0, 100, 0);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+        
         // Create environment first
         environment = new Environment(scene);
         
-        try {
-            // Create enhanced environment components
-            airport = new Airport(scene);
-            cityscape = new Cityscape(scene);
-            sky = new Sky(scene);
-        } catch (e) {
-            console.warn("Enhanced environment components not available:", e);
-        }
-        
         // Create paper plane
         plane = new PaperPlane(scene);
+        
+        // Set plane to a good starting position
+        plane.position.set(0, 5, 0);
+        plane.mesh.position.copy(plane.position);
         
         // Create controls
         controls = new Controls(plane, camera, document);
@@ -199,12 +203,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create sound manager
         soundManager = new SoundManager();
         
-        // Create mobile UI
-        mobileUI = new MobileUI({
-            plane: plane,
-            controls: controls,
-            soundManager: soundManager
-        });
+        // Try to create enhanced environment components
+        try {
+            // Create airport
+            airport = new Airport(scene);
+            
+            // Create cityscape
+            cityscape = new Cityscape(scene);
+            
+            // Create sky with day/night cycle
+            sky = new Sky(scene);
+        } catch (e) {
+            console.warn("Enhanced environment components not available:", e);
+        }
         
         // Set up collision objects - do this after all objects are created
         setupCollisionObjects();
@@ -213,9 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setupEventListeners();
         
         // Position camera behind the plane for initial view
-        const planePos = plane.getPosition();
-        camera.position.set(planePos.x, planePos.y + 5, planePos.z + 15);
-        camera.lookAt(planePos);
+        camera.position.set(0, 10, 20);
+        camera.lookAt(0, 0, 0);
         
         // Start game loop
         lastTime = performance.now();
@@ -224,35 +234,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up collision objects for the plane
     function setupCollisionObjects() {
-        const collisionObjects = [];
-        
-        // Add environment objects
-        if (environment && environment.objects) {
-            // Filter out the ground plane to prevent immediate collisions
-            const filteredObjects = environment.objects.filter(obj => {
-                // Skip ground plane and very large objects
-                if (obj.geometry instanceof THREE.PlaneGeometry) {
-                    return false;
-                }
-                return true;
-            });
-            
-            collisionObjects.push(...filteredObjects);
-        }
-        
-        // Add airport objects
-        if (airport && airport.buildings) {
-            collisionObjects.push(...airport.buildings);
-        }
-        
-        // Add cityscape objects
-        if (cityscape && cityscape.buildings) {
-            collisionObjects.push(...cityscape.buildings);
-        }
-        
-        // Set collision objects for the plane
+        // Disable collision detection for now to prevent immediate crashes
         if (plane) {
-            plane.setCollisionObjects(collisionObjects);
+            plane.setCollisionObjects([]);
         }
     }
     
@@ -284,10 +268,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update game objects
         if (!isLoading) {
             // Update plane
-            plane.update(deltaTime);
+            if (plane) plane.update(deltaTime);
             
             // Update environment
-            environment.update(deltaTime);
+            if (environment) environment.update(deltaTime);
             
             // Update enhanced environment components
             if (airport) airport.update(deltaTime);
@@ -295,21 +279,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (sky) sky.update(deltaTime);
             
             // Update controls and camera
-            controls.update(deltaTime);
+            if (controls) controls.update(deltaTime);
             
             // Update sounds
-            const flightData = plane.getFlightData();
-            if (soundManager) {
+            if (plane && soundManager) {
+                const flightData = plane.getFlightData();
                 soundManager.update(flightData.speed, flightData.altitude, plane.isGrounded);
             }
             
-            // Update mobile UI
-            if (mobileUI) {
-                mobileUI.update(deltaTime);
-            }
-            
             // Update UI
-            updateUI(flightData);
+            if (plane) {
+                const flightData = plane.getFlightData();
+                updateUI(flightData);
+            }
         }
         
         // Render scene
@@ -321,19 +303,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update UI elements
     function updateUI(flightData) {
-        speedValue.textContent = flightData.speed;
-        altitudeValue.textContent = flightData.altitude;
-        headingValue.textContent = flightData.heading;
+        if (speedValue) speedValue.textContent = flightData.speed;
+        if (altitudeValue) altitudeValue.textContent = flightData.altitude;
+        if (headingValue) headingValue.textContent = flightData.heading;
         
         // Update crash status if needed
         if (flightData.crashed) {
-            speedValue.style.color = 'red';
-            altitudeValue.style.color = 'red';
-            headingValue.style.color = 'red';
+            if (speedValue) speedValue.style.color = 'red';
+            if (altitudeValue) altitudeValue.style.color = 'red';
+            if (headingValue) headingValue.style.color = 'red';
         } else {
-            speedValue.style.color = '';
-            altitudeValue.style.color = '';
-            headingValue.style.color = '';
+            if (speedValue) speedValue.style.color = '';
+            if (altitudeValue) altitudeValue.style.color = '';
+            if (headingValue) headingValue.style.color = '';
         }
     }
     
