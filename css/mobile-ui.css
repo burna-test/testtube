@@ -1,0 +1,238 @@
+/**
+ * Mobile UI Styles for the 3D Paper Plane Flight Simulator
+ */
+
+/* Mobile UI Container */
+#mobile-ui-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Mobile UI Buttons */
+.mobile-ui-button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-ui-button:active {
+    transform: scale(0.95);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Fullscreen Button */
+#mobile-fullscreen-button {
+    top: 10px;
+    right: 10px;
+}
+
+/* Help Button */
+#mobile-help-button {
+    top: 10px;
+    left: 10px;
+}
+
+/* Help Panel */
+#mobile-help-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+    pointer-events: auto;
+    display: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#mobile-help-panel h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+#mobile-help-panel p {
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+#mobile-help-panel button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#mobile-help-panel button:hover {
+    background-color: #3e8e41;
+}
+
+/* Orientation Warning */
+#orientation-warning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    text-align: center;
+    padding: 20px;
+}
+
+#orientation-warning h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+/* Virtual Joystick Indicator */
+#virtual-joystick-indicator {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    display: none;
+    z-index: 90;
+}
+
+#virtual-joystick-knob {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Throttle Indicator */
+#throttle-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 300px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    pointer-events: none;
+    display: none;
+    z-index: 90;
+}
+
+#throttle-level {
+    height: 100%;
+    width: 50%;
+    background-color: rgba(0, 255, 0, 0.5);
+    border-radius: 10px;
+    transition: width 0.1s ease;
+}
+
+/* Mobile Welcome Message */
+.mobile-welcome {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-welcome h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.mobile-welcome p {
+    margin: 5px 0;
+}
+
+.mobile-welcome button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+.mobile-welcome button:hover {
+    background-color: #3e8e41;
+}
+
+/* Media Queries for Different Screen Sizes */
+@media (max-height: 500px) {
+    .mobile-ui-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        font-size: 20px;
+    }
+    
+    #throttle-indicator {
+        bottom: 10px;
+        height: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    #mobile-help-panel {
+        padding: 15px;
+    }
+    
+    #mobile-help-panel h2 {
+        font-size: 1.3em;
+    }
+    
+    #mobile-help-panel p {
+        font-size: 0.9em;
+    }
+}

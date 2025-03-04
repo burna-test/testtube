@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Paper Plane Flight Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/mobile-ui.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1>Paper Plane Simulator</h1>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <p class="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        
+        <div id="cockpit">
+            <div id="cockpit-frame"></div>
+            <div id="cockpit-dashboard">
+                <div class="instrument" id="speed">
+                    <div class="instrument-label">SPEED</div>
+                    <div class="instrument-value"><span id="speed-value">0</span> km/h</div>
+                </div>
+                <div class="instrument" id="altitude">
+                    <div class="instrument-label">ALTITUDE</div>
+                    <div class="instrument-value"><span id="altitude-value">0</span> m</div>
+                </div>
+                <div class="instrument" id="heading">
+                    <div class="instrument-label">HEADING</div>
+                    <div class="instrument-value"><span id="heading-value">0</span>°</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="controls-panel">
+            <div class="controls-group">
+                <div class="control-button" id="throttle-up">W</div>
+                <div class="control-button" id="throttle-down">S</div>
+                <div class="control-info">Throttle</div>
+            </div>
+            <div class="controls-group">
+                <div class="control-button" id="pitch-up">↑</div>
+                <div class="control-button" id="pitch-down">↓</div>
+                <div class="control-info">Pitch (Inverted)</div>
+            </div>
+            <div class="controls-group">
+                <div class="control-button" id="roll-left">←</div>
+                <div class="control-button" id="roll-right">→</div>
+                <div class="control-info">Roll</div>
+            </div>
+            <div class="controls-group">
+                <div class="control-button" id="view-toggle">V</div>
+                <div class="control-info">Toggle View</div>
+            </div>
+        </div>
+        
+        <div id="sound-controls">
+            <div class="sound-control" id="sound-toggle">
+                <span class="sound-icon">🔊</span>
+            </div>
+        </div>
+        
+        <div id="help-panel">
+            <div class="help-title">Controls</div>
+            <div class="help-item">W/S: Throttle</div>
+            <div class="help-item">↑/↓: Pitch (Inverted - Down to rise)</div>
+            <div class="help-item">←/→: Roll</div>
+            <div class="help-item">V: Toggle View</div>
+            <div class="help-item">M: Toggle Mouse Look</div>
+            <div class="help-item">I: Toggle Inverted Controls</div>
+        </div>
+    </div>
+    
+    <!-- Sound effects -->
+    <audio id="engine-sound" src="sounds/engine.mp3" loop></audio>
+    <audio id="wind-sound" src="sounds/wind.mp3" loop></audio>
+    <audio id="takeoff-sound" src="sounds/takeoff.mp3"></audio>
+    <audio id="landing-sound" src="sounds/landing.mp3"></audio>
+    
+    <!-- Three.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <!-- Main game script -->
+    <script src="js/paper-plane.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/sound-manager.js"></script>
+    <script src="js/airport.js"></script>
+    <script src="js/cityscape.js"></script>
+    <script src="js/sky.js"></script>
+    <script src="js/mobile-ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

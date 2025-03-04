@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Simulator Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .controls {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .controls table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .controls table td, .controls table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .controls table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Paper Plane Flight Simulator Test Page</h1>
+    
+    <div class="warning">
+        <strong>Note:</strong> Before testing the simulator, make sure you've added an engine sound file named "engine.mp3" to the sounds folder.
+    </div>
+    
+    <p>This is a simple flight simulator featuring a paper plane that starts on a runway. Use keyboard controls to fly the plane.</p>
+    
+    <div class="controls">
+        <h2>Controls</h2>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>W</td>
+                <td>Speed up</td>
+            </tr>
+            <tr>
+                <td>S</td>
+                <td>Slow down</td>
+            </tr>
+            <tr>
+                <td>↑ (Up Arrow)</td>
+                <td>Pitch up</td>
+            </tr>
+            <tr>
+                <td>↓ (Down Arrow)</td>
+                <td>Pitch down</td>
+            </tr>
+            <tr>
+                <td>← (Left Arrow)</td>
+                <td>Roll left / Turn left</td>
+            </tr>
+            <tr>
+                <td>→ (Right Arrow)</td>
+                <td>Roll right / Turn right</td>
+            </tr>
+        </table>
+    </div>
+    
+    <p>The simulator includes:</p>
+    <ul>
+        <li>A paper plane that starts on a runway</li>
+        <li>Flight controls for speed and direction</li>
+        <li>Engine sound that changes with speed</li>
+        <li>Dynamic world with moving clouds, trees, and runway</li>
+        <li>Speed and altitude indicators</li>
+    </ul>
+    
+    <a href="index.html" class="button">Launch Flight Simulator</a>
+</body>
+</html>
